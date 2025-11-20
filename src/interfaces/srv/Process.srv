@@ -1,0 +1,7 @@
+# Request: 包含要处理的图像
+sensor_msgs/Image input_image
+---
+# Response: 包含处理结果
+bool success
+string message
+sensor_msgs/Image processed_image

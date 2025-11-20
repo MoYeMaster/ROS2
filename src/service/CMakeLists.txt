@@ -14,6 +14,7 @@ find_package(cv_bridge REQUIRED)
 find_package(geometry_msgs REQUIRED)
 find_package(OpenCV REQUIRED)
 find_package(rosidl_default_generators REQUIRED)
+find_package(interfaces REQUIRED)
 
 add_executable(client src/client.cpp)
 ament_target_dependencies(client 
@@ -23,6 +24,7 @@ ament_target_dependencies(client
   cv_bridge 
   geometry_msgs
   OpenCV
+  interfaces
 )
 
 add_executable(server src/server.cpp)
@@ -33,6 +35,7 @@ ament_target_dependencies(server
   cv_bridge 
   geometry_msgs
   OpenCV
+  interfaces
 )
 
 # # 服务端/客户端必须链接类型支持目标（让编译器找到生成的头文件）

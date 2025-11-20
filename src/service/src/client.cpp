@@ -72,7 +72,7 @@ private:
 
         cv::Mat processed_image = cv_ptr->image;
         cv::imshow("Result",processed_image);
-        int key = cv::waitKey(1);
+        int key = cv::waitKey(0);
         if (key == 27 || key == 'q') { // ESC 或 'q' 键退出
           RCLCPP_INFO(this->get_logger(), "节点关闭");
           rclcpp::shutdown();

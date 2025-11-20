@@ -35,23 +35,29 @@ int main()
         cv::Rect bounding_rect = cv::boundingRect(contours[i]);
         rectangle(img, bounding_rect, cv::Scalar(0, 255, 0), 2);
         // 获取第一个灯条的坐标(左上和左下)
-        if (i == 0)
+        if (contours.size() >= 2)
         {
-            point.push_back(cv::Point2f(bounding_rect.x, bounding_rect.y));
-            point.push_back(cv::Point2f(bounding_rect.br().x - bounding_rect.width, bounding_rect.br().y));
-        }
-        // 第二个灯条的坐标(右上和右下)
-        if (i == 1)
-        {
-            point.push_back(cv::Point2f(bounding_rect.x + bounding_rect.width, bounding_rect.y));
-            point.push_back(cv::Point2f(bounding_rect.br().x, bounding_rect.br().y));
-        }
+            if (i == 0)
+            {
+                point.push_back(cv::Point2f(bounding_rect.x, bounding_rect.y));
+                point.push_back(cv::Point2f(bounding_rect.br().x - bounding_rect.width, bounding_rect.br().y));
+            }
+            // 第二个灯条的坐标(右上和右下)
+            if (i == 1)
+            {
+                point.push_back(cv::Point2f(bounding_rect.x + bounding_rect.width, bounding_rect.y));
+                point.push_back(cv::Point2f(bounding_rect.br().x, bounding_rect.br().y));
+            }
 
-        std::cout << point[2 * i] << std::endl;
-        std::cout << point[2 * i + 1] << std::endl;
+            std::cout << point[2 * i] << std::endl;
+            std::cout << point[2 * i + 1] << std::endl;
+        }
+        else
+            continue;
+
         // 标出四个角的点
-        //  circle(img, point[2 * i], 5, cv::Scalar(0, 0, 255), -1);
-        //  circle(img, point[2 * i + 1], 5, cv::Scalar(0, 0, 255), -1);
+        circle(img, point[2 * i], 5, cv::Scalar(0, 0, 255), -1);
+        circle(img, point[2 * i + 1], 5, cv::Scalar(0, 0, 255), -1);
     }
     // 绘制出灯条的外接矩形
     cv::rectangle(img, point[0], point[3], cv::Scalar(0, 69, 200), 2);
